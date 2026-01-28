@@ -14,7 +14,15 @@ const RelationshipSchema = new mongoose.Schema(
     },
     relation: {
       type: String,
-      enum: ["FATHER", "MOTHER", "SON", "DAUGHTER", "HUSBAND", "WIFE"],
+      enum: [
+        "FATHER",
+        "MOTHER",
+        "SON",
+        "BROTHER",
+        "DAUGHTER",
+        "HUSBAND",
+        "WIFE"
+      ],
       required: true
     }
   },

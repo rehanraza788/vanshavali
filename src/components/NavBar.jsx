@@ -9,7 +9,7 @@ const NavBar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-gradient-to-r from-emerald-700 to-green-700 text-white fixed relative w-full">
+    <nav className="bg-gradient-to-r from-emerald-700 to-green-700 text-white fixed top-0 left-0 w-full z-50 ">
       {/* Navbar container */}
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo / Project Name */}
@@ -64,6 +64,13 @@ const NavBar = () => {
             onClick={() => setOpen(false)}
           >
             About
+          </Link>
+          <Link
+            href="/relations"
+            className="block py-2"
+            onClick={() => setOpen(false)}
+          >
+            RelationShips
           </Link>
 
           <Link

@@ -16,9 +16,7 @@ const Page = () => {
   const [fromPerson, setFromPerson] = useState("");
   const [toPerson, setToPerson] = useState("");
   const [relation, setRelation] = useState("");
-  // const [relationshipData, setRelationshipData] = useState([]);
-  // console.log(relationshipData);
-
+  const [showForm, setShowForm] = useState(false);
   // ---------------- PERSON ----------------
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -43,6 +41,7 @@ const Page = () => {
     });
 
     fetchPersons();
+    setShowForm(false);
   };
 
   const fetchPersons = async () => {
@@ -74,76 +73,98 @@ const Page = () => {
     setRelation("");
   };
 
-  // fetch relationships
-
-  // async function fetchRelationship() {
-  //   const res = await fetch("/api/relationship");
-  //   const data = await res.json();
-  //   setRelationshipData(data.data);
-  // }
-
   useEffect(() => {
     fetchPersons();
-    // fetchRelationship();
   }, []);
 
   return (
-    <div className="p-10 max-w-4xl mx-auto space-y-10">
+    <div className="p-10 max-w-4xl mx-auto space-y-10 pt-22">
+      <div className="border rounded p-6 bg-green-50 space-y-3">
+        <h1 className="text-2xl font-bold text-green-800">
+          Vanshavali – Family Tree
+        </h1>
+
+        <p className="text-gray-700">
+          Vanshavali is a digital family tree application that helps you store
+          and manage information about your family members in one place.
+        </p>
+
+        <p className="text-gray-700">
+          You can add each person to the family tree and define relationships
+          such as <strong>Father, Mother, Son, and Daughter</strong>.
+        </p>
+
+        <p className="text-gray-700">
+          This makes it easy to understand your complete family lineage and view
+          relationships across multiple generations.
+        </p>
+      </div>
+
       {/* ADD PERSON */}
-      <form onSubmit={addPerson} className="space-y-3 border p-6 rounded ">
-        <h2 className="text-xl font-bold">Add Person</h2>
 
-        <input
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="Name"
-          className="border p-2 w-full"
-        />
-        <select
-          name="gender"
-          value={form.gender}
-          onChange={handleChange}
-          className="border p-2 w-full"
-        >
-          <option value="">Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-        <input
-          name="phoneNo"
-          value={form.phoneNo}
-          onChange={handleChange}
-          placeholder="Phone"
-          className="border p-2 w-full"
-        />
-        <input
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="Email"
-          className="border p-2 w-full"
-        />
-        <input
-          type="date"
-          name="dateOfBirth"
-          value={form.dateOfBirth}
-          onChange={handleChange}
-          className="border p-2 w-full"
-        />
-        <input
-          name="birthPlace"
-          value={form.birthPlace}
-          onChange={handleChange}
-          placeholder="Birth Place"
-          className="border p-2 w-full"
-        />
+      <button
+        onClick={() => setShowForm(true)}
+        className="bg-green-600 text-white px-4 py-2 rounded"
+      >
+        Add User
+      </button>
 
-        <button className="bg-green-700 text-white px-4 py-2 rounded">
-          Add Person
-        </button>
-      </form>
+      {showForm && (
+        <form onSubmit={addPerson} className="space-y-3 border p-6 rounded ">
+          <h2 className="text-xl font-bold">Add Person</h2>
+
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Name"
+            className="border p-2 w-full"
+          />
+          <select
+            name="gender"
+            value={form.gender}
+            onChange={handleChange}
+            className="border p-2 w-full"
+          >
+            <option value="">Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          <input
+            name="phoneNo"
+            value={form.phoneNo}
+            onChange={handleChange}
+            placeholder="Phone"
+            className="border p-2 w-full"
+          />
+          <input
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Email"
+            className="border p-2 w-full"
+          />
+          <input
+            type="date"
+            name="dateOfBirth"
+            value={form.dateOfBirth}
+            onChange={handleChange}
+            className="border p-2 w-full"
+          />
+          <input
+            name="birthPlace"
+            value={form.birthPlace}
+            onChange={handleChange}
+            placeholder="Birth Place"
+            className="border p-2 w-full"
+          />
+
+          <button className="bg-green-700 text-white px-4 py-2 rounded">
+            Add Person
+          </button>
+        </form>
+      )}
 
       {/* ADD RELATIONSHIP */}
       <div className="border p-6 rounded space-y-3">
@@ -171,6 +192,7 @@ const Page = () => {
           <option value="FATHER">Father</option>
           <option value="MOTHER">Mother</option>
           <option value="SON">Son</option>
+          <option value="BROTHER">Brother</option>
           <option value="DAUGHTER">Daughter</option>
           <option value="HUSBAND">Husband</option>
           <option value="WIFE">Wife</option>
@@ -206,27 +228,6 @@ const Page = () => {
           </div>
         ))}
       </div>
-      {/* show relationships  */}
-      {/* <div>
-        <table className="min-w-full border">
-          <thead>
-            <tr className="bg-gray-50 border-b">
-              <th className="p-2 text-left">Person A</th>
-              <th className="p-2 text-left">Relation</th>
-              <th className="p-2 text-left">Person B</th>
-            </tr>
-          </thead>
-          <tbody>
-            {relationshipData.map((rel) => (
-              <tr key={rel._id} className="border-b">
-                <td className="p-2">{rel.from?.name}</td>
-                <td className="p-2 font-bold text-blue-500">{rel.relation}</td>
-                <td className="p-2">{rel.to?.name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div> */}
     </div>
   );
 };

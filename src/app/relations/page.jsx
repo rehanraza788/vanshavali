@@ -30,6 +30,7 @@ const page = () => {
       FATHER: "bg-emerald-100 text-emerald-800 border-l-4 border-emerald-700",
       MOTHER: "bg-green-100 text-green-800 border-l-4 border-green-700",
       SON: "bg-teal-100 text-teal-800 border-l-4 border-teal-700",
+      BROTHER: "bg-emerald-100 text-emerald-800 border-l-4 border-emerald-700",
       DAUGHTER: "bg-lime-100 text-lime-800 border-l-4 border-lime-700",
       HUSBAND: "bg-cyan-100 text-cyan-800 border-l-4 border-cyan-700",
       WIFE: "bg-green-50 text-green-900 border-l-4 border-green-600"
@@ -67,7 +68,7 @@ const page = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 pt-10">
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header Section */}
         <div className="mb-12">
