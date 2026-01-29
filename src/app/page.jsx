@@ -220,13 +220,25 @@ const Page = () => {
       </div>
 
       {/* PERSON LIST */}
-      <div className="border p-6 rounded">
-        <h2 className="text-xl font-bold mb-3">All Family Members</h2>
-        {persons.map((p) => (
-          <div key={p._id} className="border-b py-2">
-            {p.name} ({p.gender})
-          </div>
-        ))}
+      <div className="border rounded p-6 ">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          All Family Members
+        </h2>
+
+        {/* Scrollable list */}
+        <div className="divide-y max-h-[240px] overflow-y-auto">
+          {persons.map((p) => (
+            <div
+              key={p._id}
+              className="py-3 px-2 flex justify-between hover:bg-white rounded-lg transition"
+            >
+              <div>
+                <p className="text-base font-medium text-gray-900">{p.name}</p>
+                <p className="text-sm text-gray-500">{p.gender}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
