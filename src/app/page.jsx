@@ -91,7 +91,7 @@ const Page = () => {
 
         <p className="text-gray-700">
           You can add each person to the family tree and define relationships
-          such as <strong>Father, Mother, Son, and Daughter</strong>.
+          such as <strong>Father, Mother, Son,Brother, and Daughter</strong>.
         </p>
 
         <p className="text-gray-700">
